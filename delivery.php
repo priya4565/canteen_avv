@@ -70,11 +70,11 @@
               <div class="row">
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Date</p>
-                  <p>10 April 2021</p>
+                  <p><?php echo date("Y/m/d") ?></p>
                 </div>
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Order No.</p>
-                  <p><?php echo "AVV".(rand(1,100));?></p>
+                  <p><?php echo uniqid('AVV');?></p>
                 </div>
               </div>
               <div class="row">
@@ -139,7 +139,7 @@
 
 <!--Footer Section-->
 <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2021 - Online Food Ordering System <a href="https://www.campcodes.com" target="_blank">CampCodes</a></div></div>
+            <div class="container"><div class="small text-center text-muted"> Online Food Ordering System</div></div>
         </footer>
         
        <?php include('footer.php') ?>
