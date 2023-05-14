@@ -1,0 +1,1 @@
+create database fos_db;
