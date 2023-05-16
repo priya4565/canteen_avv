@@ -70,11 +70,15 @@
               <div class="row">
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Date</p>
-                  <p><?php echo date("Y/m/d") ?></p>
+                  <p><?php
+                  $dt=date("Y/m/d");
+                  echo $dt ?></p>
                 </div>
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Order No.</p>
-                  <p><?php echo uniqid('AVV');?></p>
+                  <p><?php 
+                  $o_id = uniqid('AVV');
+                  echo $o_id?></p>
                 </div>
               </div>
               <div class="row">
@@ -84,10 +88,12 @@
                 </div>
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Estimated delivery time</p>
-                  <p><?php echo (rand(10,30));?></p>
+                  <p><?php 
+                  $del_time=(rand(10,30));
+                  echo $del_time?></p>
               </div>
             </div>
-  
+              
               <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
                 <div class="row">
                   <div class="col-md-8 col-lg-9">
@@ -98,7 +104,34 @@
                   </div>
                 </div>
               </div>
-  
+              <?php
+
+// servername => localhost
+// username => root
+// password => empty
+// database name => staff
+$conn = mysqli_connect("localhost", "root", "", "fos_db");
+
+// Check connection
+if($conn === false){
+    die("ERROR: Could not connect. "
+        . mysqli_connect_error());
+}
+
+// Taking all 5 values from the form data(input)
+$order_id = $o_id;
+$bill_amnt = $_REQUEST['bill'];
+$dstn_addr = $_REQUEST['dst'];
+$delivery_time = $del_time;
+$date = $dt;
+
+// We are going to insert the data into our sampleDB table
+$sql = "INSERT INTO delivery VALUES ('$order_id',
+    '$bill_amnt','$dstn_addr','$delivery_time','$date')";
+
+// Close connection
+mysqli_close($conn);
+?>       
   
               <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Tracking Order</p>
   
